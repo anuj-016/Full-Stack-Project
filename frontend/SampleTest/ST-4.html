@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Restaurant Sample Test</title>
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+            <script>
+            import ThreeDCarousel, { ThreeDCarouselItem } from "@/components/ThreeDCarousel";
+
+            const items = [
+        {
+            id: 1,
+            title: "6th SENSE Safety System",
+            brand: "FireCat Group",
+            description: "AI-driven smart uniform tech for law enforcement, military & firefighters.",
+            tags: ["Safety", "Military", "AI Sensors", "Monitoring"],
+            imageUrl: "C1.png",
+            link: "/projects/firecat"
+        }
+        ];
+
+        <ThreeDCarousel 
+        items={items}
+        autoRotate={true}
+        rotateInterval={4000}
+        cardHeight={500}
+        />
+        </script>
+    </body>
+</html>
