@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Restaurant Homepage</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" crossorigin href="/assets/index-Be2rdvfj.css">
+</head>
+<body class = bd>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black px-3 fixed-top">
+        <a class="navbar-brand d-flex align-items-center" href="/home.html">
+            <img src="/assets/Logo-C9qS0JmZ.png" alt="Spice & Smoke Logo" width="50" height="50" class="me-2">
+            <span class="fw-bold text-warning">Spice & Smoke</span>
+        </a> 
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav align-items-center">
+                   
+                <li class="nav-item me-3">
+                        <a class="nav-link" href="./index.html">Home</a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a class="nav-link" href="./Menu.html">Menu</a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a class="nav-link" href="#">Contact Us</a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a class="nav-link" href="#">Branches</a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a class="nav-link" href="#" id="openCart">
+                            🛒 Cart <span id="cartCount" class="badge bg-warning text-dark">0</span>
+                        </a>
+                    </li>
+
+
+                <!-- Avatar Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <!-- Profile Image -->
+                        <img src="Profile.png" alt="Profile" class="rounded-circle me-2" width="40" height="40">
+                        <!-- Username (optional) -->
+                        <span id="userName" class="d-none d-sm-inline">John</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Carousal -->
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner xyz">
+            <div class="carousel-item active">
+                <img src="/assets/C0-DKAju0-l.png" class="d-block w-100 carousal-img" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="/assets/C1-DalKFMFg.png" class="d-block w-100 carousal-img" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="/assets/C2-DLGnn7bv.jpg" class="d-block w-100 carousal-img" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="/assets/C3-D3f6Wgs_.jpg" class="d-block w-100 carousal-img" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="/assets/C6-CwygsMCt.jpg" class="d-block w-100 carousal-img" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+
+    <!--Discount/Offer Section-->
+    <div class="Offers container py-4">
+        <div class="Discounts">
+            <h1 class="text-center mb-4">OFFERS</h1>
+            <div class="row g-3">
+                <div class="col-12 col-md-6">
+                    <div class="offer_CreditCard p-3 bg-dark text-light rounded">
+                        <h2>Credit Cards</h2>
+                        <p>1. Pay with Any Rupay Credit Card to get a 20% discount up to ₹500</p>
+                        <p>2. Pay with HDFC NEO credit card to get an instant discount of ₹1000 on orders above ₹2000</p>
+                        <p>3. Pay with Induslnd Eazydinner Credit Card to get instant discount upto ₹1000 + 25% extra discount on prebooking with eazydinner app.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="offer_CreditCard p-3 bg-dark text-light rounded">
+                        <h2>Student Discounts</h2>
+                        <p>1. Get ₹200 instant discount on Buffet with a valid student ID</p>
+                        <p>2. Get ₹100 discount on KingFisher, BlackDog and Absolute Vodka. Applicable on Valid Collage ID card once a month.</p>
+                        <p>3. Buy 1 Get 1 Free on Mocktails or Soft Drinks. Show a valid student ID and enjoy one complimentary drink with every purchase.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="offer_CreditCard p-3 bg-dark text-light rounded">
+                        <h2>Resturant Discounts</h2>
+                        <p>1. Get a flat ₹200 discount every Wednesday when your total bill crosses a minimum expenditure of ₹1000. Make your mid-week dining feel special with savings that bring you closer to a royal feast. </p>
+                        <p>2. Buy 3 bottles of KingFisher Ultra Strong and grab the 4th at just ₹160. Perfect for those long evenings with friends where the good vibes and chilled bottles.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="offer_CreditCard p-3 bg-dark text-light rounded">
+                        <h2>King's Discounts</h2>
+                        <p>1. Get a royal saving of ₹4000 when your total bill value exceeds ₹10,000, making your grand celebrations even more luxurious while keeping your pocket light. </p>
+                        <p>2. Enjoy an exclusive 50% discount (up to ₹5000) on advance bookings for kitty-parties, ensuring your group gatherings are not just lavish but also super affordable with our premium service.</p>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="alert alert-warning text-center fw-semibold shadow-sm rounded">
+                        ⚠️ Note: Only one offer or coupon can be availed per day.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- About Us Section -->
+    <div>
+        <div class="Discounts Offers">
+            <h1 class="text-center mb-4">About Us</h1>
+        </div>
+        <div class = m-4>
+            <div class="offer_CreditCard p-3 bg-dark text-light rounded m-4">
+                    <p>
+                        Born on a historic day—2nd April 2011, when India clinched its second World Cup with MS Dhoni’s iconic six—Spice and Smoke was founded with one simple dream: to bring people together over fire-grilled flavors and unforgettable meals. What started as a small passion project has grown into a vibrant space where friends, families, and food lovers gather to celebrate good times.
+                        At Spice and Smoke, we believe dining should be an experience. That’s why our buffet comes alive with an interactive grill system at every table, letting you craft your meal just the way you like it. From sizzling kebabs to perfectly seared veggies, every bite is a mix of flavor, fun, and a little bit of magic.
+                        Our philosophy is simple: fresh ingredients, bold flavors, and a warm, welcoming vibe. Every dish is crafted with care by our expert chefs who pour their heart into the grill—because food is more than just fuel; it’s an experience to savor.
+                        Step into Spice and Smoke and let the aromas, the sizzling sounds, and the lively energy transport you. Whether you’re here to celebrate, relax, or simply indulge, we promise a meal that’s memorable, interactive, and deliciously yours.
+                        Come join us, grab the tongs, and be part of the flavor revolution. Your table—and the grill—is waiting.
+                    </p>
+            </div>
+        </div>
+    </div> 
+
+
+    <script>
+    // Get name from localStorage
+        const fullName = localStorage.getItem("name") || "";
+
+        // Extract first word (before the first space)
+        const firstName = fullName.split(" ")[0];
+
+        // Update navbar
+        document.getElementById("userName").innerText = firstName ? `${firstName}` : "";
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+</body>
+</html>
