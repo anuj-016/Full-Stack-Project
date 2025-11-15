@@ -1,0 +1,74 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Place Order - GastroBite</title><link rel="stylesheet" href="gastro.css"></head><body>
+
+<nav class="navbar-top">
+  <div class="brand"><img src="Logo.png" width="40" height="40" alt="GastroBite"/> <span>GastroBite</span></div>
+  <div class="nav-right">
+    <span id="greet"></span>
+    <a href="cart.html">Cart (<span id="cartCount">0</span>)</a>
+    <a href="order_history.html">My Orders</a>
+    <a href="admin.html">Admin</a>
+    <a href="Login.html" id="authLink">Login</a>
+  </div>
+</nav>
+<script>
+// navbar script: show greeting and cart count
+(function(){
+  const name = localStorage.getItem('name');
+  const uid = localStorage.getItem('user_id');
+  document.getElementById('greet').textContent = name ? 'Hello, ' + name : '';
+  document.getElementById('authLink').textContent = name ? 'Logout' : 'Login';
+  if (name) {
+    document.getElementById('authLink').onclick = (e) => { e.preventDefault(); localStorage.clear(); window.location.href='Login.html'; };
+  }
+  const cart = JSON.parse(localStorage.getItem('cart')||'[]');
+  document.getElementById('cartCount').textContent = cart.length;
+})();
+</script>
+<style>
+.navbar-top{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;background:linear-gradient(90deg,#ff8a80,#ffd166);border-radius:8px;margin-bottom:16px}
+.navbar-top .brand{display:flex;align-items:center;gap:8px;font-weight:700;color:#fff}
+.nav-right a{margin-left:12px;color:#fff;text-decoration:none}
+</style>
+
+<div class="container" style="max-width:900px;margin:20px auto">
+  <h2>Place Order</h2>
+  <div id="menuList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px"></div>
+  <h3>Your Cart</h3>
+  <div id="miniCart"></div>
+  <button id="placeBtn" class="btn-primary">Place Order</button>
+  <p id="orderMsg"></p>
+</div>
+<script>
+// sample menu - in real app fetch /api/menu
+const sampleMenu = [
+  { id:1, name:'Spicy Burger', desc:'Juicy burger', price:5.99 },
+  { id:2, name:'Veg Wrap', desc:'Fresh veggies', price:4.50 },
+  { id:3, name:'Cold Drink', desc:'Chilled', price:1.75 }
+];
+function renderMenu(){
+  const el = document.getElementById('menuList');
+  el.innerHTML = sampleMenu.map(function(m){ return '<div style="background:#fff;padding:12px;border-radius:10px"><h4>'+m.name+'</h4><p>'+m.desc+'</p><div>$'+m.price+' <button data-id="'+m.id+'" data-name="'+m.name+'" data-price="'+m.price+'" class="addBtn">Add</button></div></div>'; }).join('');
+  document.querySelectorAll('.addBtn').forEach(function(b){ b.onclick = function(e){ var id=e.target.dataset.id; var name=e.target.dataset.name; var price=+e.target.dataset.price; var cart=JSON.parse(localStorage.getItem('cart')||'[]'); var existing = cart.find(function(it){ return it.name===name; }); if(existing){ existing.qty +=1; } else { cart.push({ name: name, description:'', price: price, qty:1 }); } localStorage.setItem('cart', JSON.stringify(cart)); renderMiniCart(); updateCartCount(); }; });
+}
+function renderMiniCart(){
+  const cart = JSON.parse(localStorage.getItem('cart')||'[]');
+  const el = document.getElementById('miniCart');
+  if(cart.length===0){ el.innerHTML='<p>Cart is empty</p>'; return; }
+  el.innerHTML = cart.map(function(it,i){ return '<div style="display:flex;justify-content:space-between;padding:6px;background:#fff;margin-bottom:6px;border-radius:6px"><div>'+it.name+' x'+it.qty+'</div><div>$'+(it.price*it.qty).toFixed(2)+'</div></div>'; }).join('');
+}
+function updateCartCount(){ document.getElementById('cartCount').textContent = JSON.parse(localStorage.getItem('cart')||'[]').length; }
+document.getElementById('placeBtn').onclick= async function(){
+  const cart = JSON.parse(localStorage.getItem('cart')||'[]');
+  if(cart.length===0){ document.getElementById('orderMsg').textContent='Cart empty'; return; }
+  const items = cart.map(function(it){ return { item_name: it.name, quantity: it.qty, price: it.price }; });
+  const user_id = localStorage.getItem('user_id');
+  const token = localStorage.getItem('token');
+  if(!user_id){ window.location.href='Login.html'; return; }
+  const res = await fetch('/api/order', { method:'POST', headers:{ 'Content-Type':'application/json', Authorization: 'Bearer '+token }, body: JSON.stringify({ user_id: user_id, items: items }) });
+  const data = await res.json();
+  if(res.ok){ localStorage.removeItem('cart'); updateCartCount(); window.location.href='order_history.html'; } else { document.getElementById('orderMsg').textContent = data.error || 'Order failed'; }
+};
+renderMenu(); renderMiniCart(); updateCartCount();
+</script>
+</body></html>

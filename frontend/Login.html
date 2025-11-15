@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | Palash’s Restaurant</title>
+  <link rel="stylesheet" href="Login.css">
+</head>
+<body>
+  <div class="login-box" id="loginBox">
+    <h2>Welcome to <span>GastroBite</span></h2>
+    <form id="loginForm" class = "padding: 10px">
+      <input type="email" id="loginEmail" placeholder="Email" required>
+      <input type="password" id="loginPassword" placeholder="Password" required>
+      <button type="submit" class="btn">Login</button>
+    </form>
+
+    <p class="switch-text">
+      Don’t have an account?
+      <button id="registerBtn" class="link-btn">Register</button>
+    </p>
+    <p id="loginMsg"></p>
+  </div>
+
+  <div id="registerBox">
+    <h2>Create Account</h2>
+    <form id="registerForm">
+      <input type="text" id="regName" placeholder="Full Name" required>
+      <input type="email" id="regEmail" placeholder="Email" required>
+      <input type="password" id="regPassword" placeholder="Password" required>
+      <input type="text" id="regAddress" placeholder="Address (optional)">
+      <button type="submit" class="btn">Register</button>
+    </form>
+    <p class="switch-text">
+      Already registered?
+      <button id="backToLogin" class="link-btn">Login</button>
+    </p>
+    <p id="registerMsg"></p>
+  </div>
+
+  <!-- Lottie Animation Container -->
+  <div id="lottieContainer">
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+    <dotlottie-wc src="https://lottie.host/80bdad06-1a6d-49d1-9a70-7cba99eb5b1e/gs3DbVI9hU.lottie"
+                  autoplay loop></dotlottie-wc>
+    <h3>Welcome back, foodie! 😋</h3>
+  </div>
+
+  <script>
+    // Switch between login & register forms
+    const loginBox = document.getElementById("loginBox");
+    const registerBox = document.getElementById("registerBox");
+
+    document.getElementById("registerBtn").onclick = () => {
+      loginBox.style.display = "none";
+      registerBox.style.display = "flex";
+    };
+
+    document.getElementById("backToLogin").onclick = () => {
+      registerBox.style.display = "none";
+      loginBox.style.display = "flex";
+    };
+
+    // Handle Login
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("loginEmail").value;
+      const password = document.getElementById("loginPassword").value;
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      });
+      const data = await res.json().catch(() => ({}));
+      const msg = document.getElementById("loginMsg");
+
+      if (res.ok) {
+        if(data.token) localStorage.setItem('token', data.token); if(data.user_id) localStorage.setItem('user_id', data.user_id); if(data.name) localStorage.setItem('name', data.name);
+        localStorage.setItem("name", data.name);
+        loginBox.style.display = "none";
+        document.getElementById("lottieContainer").style.display = "flex";
+        setTimeout(() => window.location.href = "index.html", 3000);
+      } else {
+        msg.textContent = data || "Login failed!";
+      }
+    });
+
+    // Handle Registration
+    document.getElementById("registerForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("regName").value;
+      const email = document.getElementById("regEmail").value;
+      const password = document.getElementById("regPassword").value;
+      const address = document.getElementById("regAddress").value;
+
+      const res = await fetch("/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password, address })
+      });
+      const msg = document.getElementById("registerMsg");
+
+      if (res.ok) {
+        msg.textContent = "✅ Registered successfully! Redirecting to login...";
+        setTimeout(() => {
+          registerBox.style.display = "none";
+          loginBox.style.display = "flex";
+        }, 2000);
+      } else {
+        msg.textContent = "❌ " + (await res.text());
+      }
+    });
+  </script>
+</body>
+</html>

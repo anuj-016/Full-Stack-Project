@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Restaurant Homepage</title>
+    <link rel="stylesheet" href="Menu.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class = bd>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black px-3 fixed-top">
+        <a class="navbar-brand d-flex align-items-center" href="./index.html">
+            <img src="Logo.png" alt="GastroBite Logo" width="50" height="50" class="me-2">
+            <span class="fw-bold text-warning">GastroBite</span>
+        </a> 
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav align-items-center">
+                   
+                <li class="nav-item me-3">
+                        <a class="nav-link" href="./index.html">Home</a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a class="nav-link" href="./Menu.html">Menu</a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a class="nav-link" href="#">Contact Us</a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a class="nav-link" href="#">Branches</a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a class="nav-link" href="#" id="openCart">
+                            🛒 Cart <span id="cartCount" class="badge bg-warning text-dark">0</span>
+                        </a>
+                    </li>
+
+                <!-- Avatar Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <!-- Profile Image -->
+                        <img src="Profile.png" alt="Profile" class="rounded-circle me-2" width="40" height="40">
+                        <!-- Username (optional) -->
+                        <span id="userName" class="d-none d-sm-inline">John</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pt-5 text-light">
+
+    <h1 class="text-center text-warning fw-bold mb-4">Our Menu</h1>
+
+    <!-- Veg Starters -->
+    <h3 class="text-warning mt-4">Veg Starters</h3>
+    <div class="row g-4 mt-2">
+        <div class="col-md-4">
+            <div class="menu-card p-3">
+                <h5><span class="veg-mark"></span>Paneer Tikka</h5>
+                <p>Smoky grilled paneer marinated in Indian spices.</p>
+                <p class="text-warning fw-bold">₹249</p>
+                <button class="add-btn">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="menu-card p-3">
+                <h5><span class="veg-mark"></span>Crispy Corn</h5>
+                <p>Golden fried corn tossed with chatpata masala.</p>
+                <p class="text-warning fw-bold">₹199</p>
+                <button class="add-btn">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="menu-card p-3">
+                <h5><span class="veg-mark"></span>Veg Manchurian</h5>
+                <p>Classic Indo-Chinese vegetable dumplings.</p>
+                <p class="text-warning fw-bold">₹229</p>
+                <button class="add-btn">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Non Veg Starters -->
+    <h3 class="text-warning mt-5">Non-Veg Starters</h3>
+    <div class="row g-4 mt-2">
+
+        <div class="col-md-4">
+            <div class="menu-card p-3">
+                <h5><span class="nonveg-mark"></span>Chicken Tandoori</h5>
+                <p>Fire-grilled juicy chicken.</p>
+                <p class="text-warning fw-bold">₹349</p>
+                <button class="add-btn">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="menu-card p-3">
+                <h5><span class="nonveg-mark"></span>Chicken Wings (6 pcs)</h5>
+                <p>Spicy, smoky & tender.</p>
+                <p class="text-warning fw-bold">₹289</p>
+                <button class="add-btn">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="menu-card p-3">
+                <h5><span class="nonveg-mark"></span>Fish Tikka</h5>
+                <p>Soft fish cubes marinated in mild spice.</p>
+                <p class="text-warning fw-bold">₹399</p>
+                <button class="add-btn">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Grill Items (Table Grill Section) -->
+    <h3 class="text-warning mt-5">🔥 Table Grill Items</h3>
+    <div class="row g-4 mt-2">
+
+        <div class="col-md-4">
+            <div class="menu-card p-3">
+                <h5><span class="veg-mark"></span>Grilled Pineapple</h5>
+                <p>Sweet & smoky on your table grill.</p>
+                <p class="text-warning fw-bold">₹159</p>
+                <button class="add-btn">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="menu-card p-3">
+                <h5><span class="nonveg-mark"></span>Grilled Chicken Skewers</h5>
+                <p>Seasoned & served raw for live grilling.</p>
+                <p class="text-warning fw-bold">₹299</p>
+                <button class="add-btn">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="menu-card p-3">
+                <h5><span class="veg-mark"></span>Paneer BBQ Sticks</h5>
+                <p>Smoky flavor on table grill.</p>
+                <p class="text-warning fw-bold">₹269</p>
+                <button class="add-btn">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="menu-card p-3">
+                <h5><span class="nonveg-mark"></span>prawns 2 Sticks</h5>
+                <p>Smoky flavor on table grill of prawns.</p>
+                <p class="text-warning fw-bold">₹332</p>
+                <button class="add-btn">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+    <div class="menu-card p-3">
+        <h5><span class="nonveg-mark"></span>Chicken Seekh Kebab (6pcs)</h5>
+        <p>Soft minced chicken rolls for slow grilling on your table.</p>
+        <p class="text-warning fw-bold">₹289</p>
+        <button class="add-btn">Add to Cart</button>
+    </div>
+</div>
+
+<div class="col-md-4">
+    <div class="menu-card p-3">
+        <h5><span class="nonveg-mark"></span>Tandoori Fish Cubes (8pcs)</h5>
+        <p>Fresh boneless fish marinated in mild smoky masala.</p>
+        <p class="text-warning fw-bold">₹369</p>
+        <button class="add-btn">Add to Cart</button>
+    </div>
+</div>
+
+<div class="col-md-4">
+    <div class="menu-card p-3">
+        <h5><span class="nonveg-mark"></span>Mutton Sheekh Bites (6pcs)</h5>
+        <p>Flavor-packed mutton minced kebabs designed for slow-grill.</p>
+        <p class="text-warning fw-bold">₹399</p>
+        <button class="add-btn">Add to Cart</button>
+    </div>
+</div>
+
+<div class="col-md-4">
+    <div class="menu-card p-3">
+        <h5><span class="veg-mark"></span>BBQ Baby Corn Sticks</h5>
+        <p>Marinated baby corn that crisps beautifully on grill.</p>
+        <p class="text-warning fw-bold">₹199</p>
+        <button class="add-btn">Add to Cart</button>
+    </div>
+</div>
+
+<div class="col-md-4">
+    <div class="menu-card p-3">
+        <h5><span class="veg-mark"></span>Tandoori Soya Chaap (6pcs)</h5>
+        <p>Delhi-style soya chaap marinated for live table grilling.</p>
+        <p class="text-warning fw-bold">₹239</p>
+        <button class="add-btn">Add to Cart</button>
+    </div>
+</div>
+
+</div>
+
+    <div class="row g-4 mt-2">
+        <h3 class="text-warning mt-5">Main Course (Veg)</h3>
+
+            <div class="col-md-4">
+                <div class="menu-card p-3">
+                    <h5><span class="veg-mark"></span>Paneer Butter Masala</h5>
+                    <p>Creamy rich tomato gravy with soft paneer cubes.</p>
+                    <p class="text-warning fw-bold">₹259</p>
+                    <button class="add-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="menu-card p-3">
+                    <h5><span class="veg-mark"></span>Dal Makhani</h5>
+                    <p>Slow-cooked black lentils finished with cream & butter.</p>
+                    <p class="text-warning fw-bold">₹199</p>
+                    <button class="add-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="menu-card p-3">
+                    <h5><span class="veg-mark"></span>Kaju Curry</h5>
+                    <p>Royal-style cashew curry with mild spices and rich taste.</p>
+                    <p class="text-warning fw-bold">₹309</p>
+                    <button class="add-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="menu-card p-3">
+                    <h5><span class="veg-mark"></span>Veg Biryani</h5>
+                    <p>Aromatic basmati rice cooked with garden vegetables.</p>
+                    <p class="text-warning fw-bold">₹249</p>
+                    <button class="add-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="menu-card p-3">
+                    <h5><span class="veg-mark"></span>Shahi Paneer</h5>
+                    <p>Paneer in creamy sweet gravy with subtle spices.</p>
+                    <p class="text-warning fw-bold">₹279</p>
+                    <button class="add-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="menu-card p-3">
+                    <h5><span class="veg-mark"></span>Jeera Rice</h5>
+                    <p>Fragrant basmati rice tempered with cumin.</p>
+                    <p class="text-warning fw-bold">₹149</p>
+                    <button class="add-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+    <h3 class="text-warning mt-5">Main Course (Non-Veg)</h3>
+<div class="row g-4 mt-2">
+
+    <div class="col-md-4">
+        <div class="menu-card p-3">
+            <h5><span class="nonveg-mark"></span>Butter Chicken</h5>
+            <p>Classic creamy tomato gravy with tender chicken.</p>
+            <p class="text-warning fw-bold">₹329</p>
+            <button class="add-btn">Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="menu-card p-3">
+            <h5><span class="nonveg-mark"></span>Chicken Hyderabadi Biryani</h5>
+            <p>Fragrant long-grain rice layered with marinated chicken.</p>
+            <p class="text-warning fw-bold">₹349</p>
+            <button class="add-btn">Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="menu-card p-3">
+            <h5><span class="nonveg-mark"></span>Mutton Rogan Josh</h5>
+            <p>Slow-cooked Kashmiri mutton with bold spices.</p>
+            <p class="text-warning fw-bold">₹429</p>
+            <button class="add-btn">Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="menu-card p-3">
+            <h5><span class="nonveg-mark"></span>Chicken Korma</h5>
+            <p>Mughlai-style rich gravy with mild spice levels.</p>
+            <p class="text-warning fw-bold">₹319</p>
+            <button class="add-btn">Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="menu-card p-3">
+            <h5><span class="nonveg-mark"></span>Fish Curry (Goan Style)</h5>
+            <p>Coconut-based tangy curry with coastal freshness.</p>
+            <p class="text-warning fw-bold">₹389</p>
+            <button class="add-btn">Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="menu-card p-3">
+            <h5><span class="nonveg-mark"></span>Egg Masala Curry</h5>
+            <p>Boiled eggs simmered in flavorful spiced gravy.</p>
+            <p class="text-warning fw-bold">₹229</p>
+            <button class="add-btn">Add to Cart</button>
+        </div>
+    </div>
+
+</div>
+
+<h3 class="text-warning mt-5">Desserts</h3>
+<div class="row g-4 mt-2">
+
+    <div class="col-md-4">
+        <div class="menu-card p-3">
+            <h5>Gulab Jamun (2 pcs)</h5>
+            <p>Soft khoya balls soaked in sweet syrup.</p>
+            <p class="text-warning fw-bold">₹89</p>
+            <button class="add-btn">Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="menu-card p-3">
+            <h5>Rasmalai (2 pcs)</h5>
+            <p>Flattened chhena soaked in flavored milk.</p>
+            <p class="text-warning fw-bold">₹129</p>
+            <button class="add-btn">Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="menu-card p-3">
+            <h5>Caramel Custard</h5>
+            <p>Silky smooth custard topped with caramel glaze.</p>
+            <p class="text-warning fw-bold">₹149</p>
+            <button class="add-btn">Add to Cart</button>
+        </div>
+    </div>
+
+</div>
+
+<h3 class="text-warning mt-5">Whisky</h3>
+<div class="row g-4 mt-2">
+
+<div class="col-md-4"><div class="menu-card p-3"><h5>Blenders Pride</h5><p class="text-warning fw-bold">₹299</p><button class="add-btn">Add to Cart</button></div></div>
+<div class="col-md-4"><div class="menu-card p-3"><h5>Royal Stag</h5><p class="text-warning fw-bold">₹249</p><button class="add-btn">Add to Cart</button></div></div>
+<div class="col-md-4"><div class="menu-card p-3"><h5>Imperial Blue</h5><p class="text-warning fw-bold">₹199</p><button class="add-btn">Add to Cart</button></div></div>
+
+</div>
+
+<h3 class="text-warning mt-5">Vodka</h3>
+<div class="row g-4 mt-2">
+
+<div class="col-md-4"><div class="menu-card p-3"><h5>Magic Moments</h5><p class="text-warning fw-bold">₹259</p><button class="add-btn">Add to Cart</button></div></div>
+<div class="col-md-4"><div class="menu-card p-3"><h5>Smirnoff</h5><p class="text-warning fw-bold">₹349</p><button class="add-btn">Add to Cart</button></div></div>
+<div class="col-md-4"><div class="menu-card p-3"><h5>Absolute</h5><p class="text-warning fw-bold">₹499</p><button class="add-btn">Add to Cart</button></div></div>
+
+</div>
+
+<h3 class="text-warning mt-5">Beer</h3>
+<div class="row g-4 mt-2">
+
+<div class="col-md-4"><div class="menu-card p-3"><h5>Kingfisher</h5><p class="text-warning fw-bold">₹169</p><button class="add-btn">Add to Cart</button></div></div>
+<div class="col-md-4"><div class="menu-card p-3"><h5>Bira White</h5><p class="text-warning fw-bold">₹219</p><button class="add-btn">Add to Cart</button></div></div>
+<div class="col-md-4"><div class="menu-card p-3"><h5>Budweiser</h5><p class="text-warning fw-bold">₹249</p><button class="add-btn">Add to Cart</button></div></div>
+
+</div>
+
+<div class="menu-card p-4 text-center mt-5 border border-warning rounded">
+    <h2 class="text-warning fw-bold">Unlimited Buffet Experience</h2>
+    <p class="mt-2">
+        Enjoy unlimited servings of all Starters, Main Course, Grill Items, Desserts & Drinks.
+        Crafted to give you the perfect dining experience at GastroBite.
+    </p>
+    <button id="bookBuffetBtn" class="btn btn-warning fw-bold mt-3">Book Buffet Now</button>
+</div>
+
+
+
+
+</div>
+    <div id="cartPanel">
+        <div id="cartHeader">
+            <h4>Your Cart</h4>
+            <button id="closeCart">&times;</button>
+        </div>
+
+        <div id="cartItems"></div>
+
+        <div id="cartFooter">
+            <p class="fw-bold">Total: ₹<span id="cartTotal">0</span></p>
+
+            <button class="checkout-btn" onclick="window.location.href='Checkout.html'">
+                Proceed to Checkout
+            </button>
+
+
+            <button id="clearCart" class="clear-btn">Clear Cart</button>
+        </div>
+    </div>
+
+
+<!-- Buffet Booking Modal -->
+<div class="modal fade" id="buffetModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content bg-dark text-light border border-warning">
+      <div class="modal-header">
+        <h5 class="modal-title text-warning">Unlimited Buffet Booking</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <label class="form-label">Number of Persons (₹999 per person)</label>
+        <input type="number" id="buffetPersons" class="form-control mb-3" min="1" placeholder="Enter persons">
+
+        <label class="form-label">Select Date</label>
+        <input type="date" id="buffetDate" class="form-control mb-3">
+
+        <label class="form-label">Select Time</label>
+        <input type="time" id="buffetTime" class="form-control mb-3">
+
+        <p class="mt-3 fw-bold">Total: ₹<span id="buffetTotal">0</span></p>
+
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-warning fw-bold" id="confirmBuffet">Confirm Booking</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+    // Get name from localStorage
+    const fullName = localStorage.getItem("name") || "";
+    document.getElementById("userName").innerText = fullName.split(" ")[0] || "";
+
+    // Load cart
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // Update Cart UI
+    function updateCartUI() {
+        document.getElementById("cartCount").innerText = cart.length;
+
+        let itemsHTML = "";
+        let total = 0;
+
+        cart.forEach(item => {
+            total += item.totalPrice;
+            itemsHTML += `
+                <div class="cart-item">
+                    <span>${item.name}</span>
+                    <span>₹${item.totalPrice}</span>
+                </div>
+            `;
+        });
+
+        document.getElementById("cartItems").innerHTML = itemsHTML;
+        document.getElementById("cartTotal").innerText = total;
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }
+
+    // Add to Cart Button
+    document.querySelectorAll(".add-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const card = btn.closest(".menu-card");
+            const name = card.querySelector("h5").innerText.trim();
+            const price = parseInt(card.querySelector(".text-warning").innerText.replace("₹", ""));
+
+            // Check if already exists
+            const existing = cart.find(item => item.name === name);
+
+            if (existing) {
+                existing.totalPrice += price; // Increase price = quantity effect
+            } else {
+                cart.push({ name, price, totalPrice: price });
+            }
+
+            updateCartUI();
+        });
+    });
+
+    // Slide Cart Panel
+    document.getElementById("openCart").onclick = () => {
+        document.getElementById("cartPanel").classList.add("open");
+    };
+
+    document.getElementById("closeCart").onclick = () => {
+        document.getElementById("cartPanel").classList.remove("open");
+    };
+
+    // Clear Cart
+    document.getElementById("clearCart").onclick = () => {
+        cart = [];
+        updateCartUI();
+    };
+
+    updateCartUI();
+</script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <!-- Slide-Out Cart Panel -->
+    <script>
+const buffetPrice = 999;
+const buffetModal = new bootstrap.Modal(document.getElementById('buffetModal'));
+
+document.getElementById("bookBuffetBtn").onclick = () => {
+  document.getElementById("buffetPersons").value = "";
+  document.getElementById("buffetDate").value = "";
+  document.getElementById("buffetTime").value = "";
+  document.getElementById("buffetTotal").innerText = "0";
+  buffetModal.show();
+};
+
+document.getElementById("buffetPersons").oninput = () => {
+  let persons = parseInt(document.getElementById("buffetPersons").value) || 0;
+  document.getElementById("buffetTotal").innerText = persons * buffetPrice;
+};
+
+document.getElementById("confirmBuffet").onclick = async () => {
+  let persons = parseInt(document.getElementById("buffetPersons").value);
+  let date = document.getElementById("buffetDate").value;
+  let time = document.getElementById("buffetTime").value;
+
+  if (!persons || persons <= 0) return alert("Enter valid number of persons 😭");
+  if (!date) return alert("Please select date 🙏");
+  if (!time) return alert("Please select time 🕒");
+
+  const total = persons * buffetPrice;
+  const tableNo = Math.floor(Math.random() * (70 - 10 + 1)) + 10;
+
+  const buffetOrder = {
+    cart: [{ name: "UNLIMITED BUFFET", quantity: persons, totalPrice: total }],
+    orderType: "dine-in",
+    tableNo,
+    address: null,
+    phone: null,
+    total,
+    date: `${date} ${time}`
+  };
+
+  const res = await fetch("/api/place-order", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(buffetOrder)
+  });
+
+  const data = await res.json();
+
+  if (res.ok) {
+    buffetModal.hide();
+    alert(`✅ Buffet Booked!
+👥 Persons: ${persons}
+🪙 Total: ₹${total}
+📆 Date: ${date}
+⏰ Time: ${time}
+🍽️ Your Table: ${tableNo}`);
+  } else {
+    alert("❌ Booking failed, try again.");
+  }
+};
+</script>
+
+
+</body>

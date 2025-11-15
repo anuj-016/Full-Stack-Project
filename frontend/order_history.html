@@ -1,0 +1,56 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>My Orders - GastroBite</title><link rel="stylesheet" href="gastro.css"></head><body>
+
+<nav class="navbar-top">
+  <div class="brand"><img src="Logo.png" width="40" height="40" alt="GastroBite"/> <span>GastroBite</span></div>
+  <div class="nav-right">
+    <span id="greet"></span>
+    <a href="cart.html">Cart (<span id="cartCount">0</span>)</a>
+    <a href="order_history.html">My Orders</a>
+    <a href="admin.html">Admin</a>
+    <a href="Login.html" id="authLink">Login</a>
+  </div>
+</nav>
+<script>
+// navbar script: show greeting and cart count
+(function(){
+  const name = localStorage.getItem('name');
+  const uid = localStorage.getItem('user_id');
+  document.getElementById('greet').textContent = name ? 'Hello, ' + name : '';
+  document.getElementById('authLink').textContent = name ? 'Logout' : 'Login';
+  if (name) {
+    document.getElementById('authLink').onclick = (e) => { e.preventDefault(); localStorage.clear(); window.location.href='Login.html'; };
+  }
+  const cart = JSON.parse(localStorage.getItem('cart')||'[]');
+  document.getElementById('cartCount').textContent = cart.length;
+})();
+</script>
+<style>
+.navbar-top{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;background:linear-gradient(90deg,#ff8a80,#ffd166);border-radius:8px;margin-bottom:16px}
+.navbar-top .brand{display:flex;align-items:center;gap:8px;font-weight:700;color:#fff}
+.nav-right a{margin-left:12px;color:#fff;text-decoration:none}
+</style>
+
+<div class="container" style="max-width:1000px;margin:20px auto">
+  <h2>My Orders</h2>
+  <div id="orders"></div>
+</div>
+<script>
+(async function(){
+  const uid = localStorage.getItem('user_id');
+  const token = localStorage.getItem('token');
+  if(!uid){ window.location.href='Login.html'; return; }
+  const res = await fetch('/api/user/'+uid+'/orders', { headers: { Authorization: 'Bearer '+token } });
+  const data = await res.json();
+  const out = document.getElementById('orders');
+  if(!Array.isArray(data) || data.length===0){ out.innerHTML='<p>No orders found.</p>'; return; }
+  const groups = {};
+  data.forEach(function(row){ if(!groups[row.order_id]) groups[row.order_id]={items:[], total:row.total_amount, created:row.created_at}; groups[row.order_id].items.push({name:row.item_name, qty:row.quantity, price:row.price}); });
+  var html='';
+  Object.keys(groups).forEach(function(oid){ var g=groups[oid]; html += '<div style="padding:12px;background:#fff;border-radius:8px;margin-bottom:10px">'
+    + '<h4>Order #'+oid+' - $'+(g.total.toFixed?g.total.toFixed(2):g.total)+'</h4><small>'+g.created+'</small>'
+    + '<ul>' + g.items.map(function(it){ return '<li>'+it.name+' x'+it.qty+' - $'+it.price+'</li>'; }).join('') + '</ul></div>'; });
+  out.innerHTML = html;
+})();
+</script>
+</body></html>

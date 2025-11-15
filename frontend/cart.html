@@ -1,0 +1,73 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Cart - GastroBite</title><link rel="stylesheet" href="gastro.css"></head><body>
+
+<nav class="navbar-top">
+  <div class="brand"><img src="Logo.png" width="40" height="40" alt="GastroBite"/> <span>GastroBite</span></div>
+  <div class="nav-right">
+    <span id="greet"></span>
+    <a href="cart.html">Cart (<span id="cartCount">0</span>)</a>
+    <a href="order_history.html">My Orders</a>
+    <a href="admin.html">Admin</a>
+    <a href="Login.html" id="authLink">Login</a>
+  </div>
+</nav>
+<script>
+// navbar script: show greeting and cart count
+(function(){
+  const name = localStorage.getItem('name');
+  const uid = localStorage.getItem('user_id');
+  document.getElementById('greet').textContent = name ? 'Hello, ' + name : '';
+  document.getElementById('authLink').textContent = name ? 'Logout' : 'Login';
+  if (name) {
+    document.getElementById('authLink').onclick = (e) => { e.preventDefault(); localStorage.clear(); window.location.href='Login.html'; };
+  }
+  const cart = JSON.parse(localStorage.getItem('cart')||'[]');
+  document.getElementById('cartCount').textContent = cart.length;
+})();
+</script>
+<style>
+.navbar-top{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;background:linear-gradient(90deg,#ff8a80,#ffd166);border-radius:8px;margin-bottom:16px}
+.navbar-top .brand{display:flex;align-items:center;gap:8px;font-weight:700;color:#fff}
+.nav-right a{margin-left:12px;color:#fff;text-decoration:none}
+</style>
+
+<div class="container" style="max-width:900px;margin:20px auto">
+  <h2>Your Cart</h2>
+  <div id="cartItems"></div>
+  <div style="margin-top:12px">
+    <button id="checkoutBtn" class="btn-primary">Proceed to Checkout</button>
+  </div>
+  <p id="cartMsg"></p>
+</div>
+
+<script>
+function renderCart(){
+  const cart = JSON.parse(localStorage.getItem('cart')||'[]');
+  const el = document.getElementById('cartItems');
+  if(cart.length===0){ el.innerHTML='<p>Your cart is empty.</p>'; return; }
+  let html='';
+  cart.forEach(function(it,i){
+    html += '<div style="display:flex;gap:12px;align-items:center;padding:8px;border-radius:8px;background:#fff;margin-bottom:8px">'
+    + '<div style="flex:1"><strong>'+it.name+'</strong><div>'+(it.description||'')+'</div></div>'
+    + '<div>Qty: <input type="number" min="1" value="'+it.qty+'" data-i="'+i+'" class="qty"/></div>'
+    + '<div>Price: $'+it.price+'</div>'
+    + '<button data-i="'+i+'" class="removeBtn">Remove</button></div>';
+  });
+  el.innerHTML = html;
+  document.querySelectorAll('.removeBtn').forEach(function(b){ b.onclick = function(e){ var i = +e.target.dataset.i; var cart = JSON.parse(localStorage.getItem('cart')||'[]'); cart.splice(i,1); localStorage.setItem('cart', JSON.stringify(cart)); renderCart(); }; });
+  document.querySelectorAll('.qty').forEach(function(inp){ inp.onchange = function(e){ var i = +e.target.dataset.i; var cart = JSON.parse(localStorage.getItem('cart')||'[]'); cart[i].qty = +e.target.value; localStorage.setItem('cart', JSON.stringify(cart)); renderCart(); }; });
+}
+renderCart();
+
+document.getElementById('checkoutBtn').onclick = function(){
+  var cart = JSON.parse(localStorage.getItem('cart')||'[]');
+  if(cart.length===0){ document.getElementById('cartMsg').textContent='Cart empty'; return; }
+  var items = cart.map(function(it){ return { item_name: it.name, quantity: it.qty, price: it.price }; });
+  var user_id = localStorage.getItem('user_id');
+  if(!user_id){ alert('Please login'); window.location.href='Login.html'; return; }
+  fetch('/api/order', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ user_id: user_id, items: items }) })
+  .then(function(r){ return r.json(); }).then(function(data){ if(data.order_id){ localStorage.removeItem('cart'); window.location.href='order_history.html'; } else { document.getElementById('cartMsg').textContent = data.error || 'Order failed'; } });
+};
+</script>
+
+</body></html>
